@@ -6,12 +6,17 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.security.auth.login.LoginException;
 
 public class MessageListener extends ListenerAdapter {
+
+    @Value("${discord.token}")
+    static String token;
+
     public static void main(String[] args) throws LoginException {
-        JDA jda = JDABuilder.createDefault("MTA4NTU2MDU3Nzk3NzQ5NTYyMw.Gp40vv.8ayx6sPnvf8TIqR6EN3TYQsvF_c_QMx6cOgHDg").build();
+        JDA jda = JDABuilder.createDefault(System.getenv(token)).build();
         jda.getPresence().setStatus(OnlineStatus.ONLINE);
         jda.addEventListener(new MessageListener());
     }
