@@ -15,6 +15,6 @@ public class ConfigController {
     @GetMapping("/test")
     public String config() {
         System.out.println(token);
-        return token;
+        return token.toString();
     }
 }

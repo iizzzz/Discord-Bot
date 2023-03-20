@@ -16,7 +16,7 @@ public class MessageListener extends ListenerAdapter {
     static String token;
 
     public static void main(String[] args) throws LoginException {
-        JDA jda = JDABuilder.createDefault(System.getenv(token)).build();
+        JDA jda = JDABuilder.createDefault(token).build();
         jda.getPresence().setStatus(OnlineStatus.ONLINE);
         jda.addEventListener(new MessageListener());
     }
