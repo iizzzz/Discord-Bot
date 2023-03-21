@@ -1,16 +1,21 @@
 package com.discord.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping
 @RefreshScope
+@RestController
 public class ConfigController {
 
-    @Value("${discord.token}")
-    private String token;
+    private final Token token;
+
+    public ConfigController(Token token) {
+        this.token = token;
+    }
+
 
     @GetMapping("/test")
     public String config() {
